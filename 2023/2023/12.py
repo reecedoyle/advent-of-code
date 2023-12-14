@@ -156,6 +156,8 @@ def part2():
     input = list(parse_input())
     results = []
     for row, damaged in input:
+        damaged = damaged * 5
+        row = "?".join([row] * 5)
         print("Starting row", row, damaged)
         blocks = convert_to_blocks(row)
         options = determine_possibilities(blocks, damaged)
@@ -167,5 +169,5 @@ def part2():
 
 if __name__ == "__main__":
     #print(list(get_possible_blocks(10, [4,3])))
-    part1()
-    #part2()
+    #part1()
+    part2()
