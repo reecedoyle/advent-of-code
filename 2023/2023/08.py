@@ -42,6 +42,7 @@ def part2():
         direction = next(directions)
         for i in range(len(current_nodes)):
             current_nodes[i] = nodes[current_nodes[i]][direction]
+            print(step_count)
     print(step_count)
 
 if __name__ == "__main__":

@@ -105,15 +105,9 @@ def part2():
     loop_size = i + 1 - cycles_before_loop
     cycles_after_loop = (1000000000 - cycles_before_loop) % loop_size
 
-    ## prove it
-    grid_before = grid
-    for i in range(loop_size):
-        grid = cycle_grid(grid)
-    print((grid_before == grid).all())
-
     for i in range(cycles_after_loop):
         grid = cycle_grid(grid)
-    print(cycles_before_loop, loop_size, cycles_after_loop)
+        
     print(calculate_load(grid))
 
 if __name__ == "__main__":

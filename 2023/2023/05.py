@@ -37,6 +37,7 @@ def parse_input():
 
 def get_ranged_seeds(seeds):
     for i in range(0, len(seeds), 2):
+        print(f"{seeds[i]} x {seeds[i+1]}")
         for j in range(seeds[i+1]):
             yield seeds[i] + j
 
