@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <day DD>"
+    exit 1
+fi
+
+day=$(printf "%02d" "$1")
+day_no_leading_zero=${day#0}
+year="2024"
+
+if [ -d "${day}" ]; then
+    echo "Error: Folder '${day}' already exists."
+    exit 1
+fi
+
+cp -r template "${day}"
+
+file="${day}/${day}.py"
+mv "${day}/DD.py" "$file"
+
+sed -i "s/DD/${day}/g" "$file"
+
+# Read the advent of code cookie
+session_cookie=$(<.aoc.cookie)
+# Populate the input.txt
+input=$(curl -s --cookie "session=${session_cookie}" https://adventofcode.com/${year}/day/${day_no_leading_zero}/input)
+mv "${day}/_input.txt" "${day}/input.txt"
+echo -n "$input" >> "${day}/input.txt"
+
+echo "https://adventofcode.com/${year}/day/${day_no_leading_zero}"
+
+echo "Created solution files for ${day}"

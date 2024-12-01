@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+# Check if exactly two arguments are passed
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <day DD>"
+    exit 1
+fi
+
+# Assign arguments to variables
+day=$1
+# Add leading zero to day if it's a single digit
+day=$(printf "%02d" "$day")
+
+uv run pytest "${day}/${day}.py"
