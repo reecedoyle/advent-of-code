@@ -14,7 +14,7 @@ class Direction(Enum):
     NORTHWEST = 8
 
 
-@dataclass
+@dataclass(eq=True, frozen=True)
 class Point:
     x: int
     y: int
@@ -57,6 +57,10 @@ class Cell:
     
     def move(self, dx, dy):
         return self.grid.loc(self.point.x + dx, self.point.y + dy)
+    
+    def set_val(self, val):
+        self.grid.vals[self.point.y][self.point.x] = val
+        self.val = val
 
 
 class Grid:
@@ -87,6 +91,12 @@ class Grid:
         if x >= self.width() or y >= self.height() or x < 0 or y < 0:
             return None
         return Cell(self, Point(x, y), self.vals[y][x])
+    
+    def find(self, val):
+        for y, row in enumerate(self.vals):
+            for x, cell_val in enumerate(row):
+                if cell_val == val:
+                    return Cell(self, Point(x, y), val)
 
     def __iter__(self):
         for y, row in enumerate(self.vals):
