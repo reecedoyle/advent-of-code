@@ -97,6 +97,9 @@ class Grid:
             for x, cell_val in enumerate(row):
                 if cell_val == val:
                     return Cell(self, Point(x, y), val)
+                
+    def in_bounds(self, point: Point):
+        return point.x >= 0 and point.x < self.width() and point.y >= 0 and point.y < self.height()
 
     def __iter__(self):
         for y, row in enumerate(self.vals):
