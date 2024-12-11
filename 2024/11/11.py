@@ -1,6 +1,6 @@
-from collections import Counter, defaultdict
+from collections import defaultdict
 import sys
-from typing import Dict, List, Set
+from typing import List, Set
 from common.utils import run, read_lines
 
 
