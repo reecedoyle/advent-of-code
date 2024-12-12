@@ -13,6 +13,9 @@ class Direction(Enum):
     SOUTHWEST = 7
     NORTHWEST = 8
 
+BISHOP = [Direction.NORTHEAST, Direction.SOUTHEAST, Direction.NORTHWEST, Direction.SOUTHWEST]
+ROOK = [Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST]
+
 
 @dataclass(eq=True, frozen=True)
 class Point:
